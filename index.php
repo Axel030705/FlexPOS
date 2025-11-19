@@ -46,6 +46,14 @@
 
 
     <p class="footer">© 2025 FlexPOS. Todos los derechos reservados.</p>
+
+    <script>
+        function togglePassword() {
+            const password = document.getElementById("password");
+            password.type = password.type === "password" ? "text" : "password";
+        }
+    </script>
+
 </body>
 
 </html>

@@ -144,12 +144,6 @@ form {
     opacity: .6;
 }
 
-/* Focus */
-.input-group input:focus {
-    border-color: #48BEFF;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.20);
-}
-
 /* BOTÓN */
 .container button {
     width: 100%;
