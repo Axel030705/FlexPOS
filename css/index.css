@@ -1,0 +1,96 @@
+/*Tipografias*/
+@font-face {
+    font-family: 'Poppins-light';
+    src: url('../fonts/poppins/Poppins-Light.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-SemiBold';
+    src: url('../fonts/poppins/Poppins-SemiBold.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('../fonts/poppins/Poppins-Bold.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../fonts/poppins/Poppins-Regular.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cooper-Book';
+    src: url('../fonts/cooper-hewitt/CooperHewitt-Book.otf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cooper-light';
+    src: url('../fonts/cooper-hewitt/CooperHewitt-Light.otf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cooper-Bold';
+    src: url('../fonts/cooper-hewitt/CooperHewitt-Bold.otf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cooper-SemiBold';
+    src: url('../fonts/cooper-hewitt/CooperHewitt-Semibold.otf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*Reset basico*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ececec;
+    overflow-x: hidden;
+    font-family: 'Poppins-Regular', sans-serif;
+}
+
+.container {
+    width: 25vw;
+    height: 55vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+
+.footer {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #000000;
+    font-family: 'Poppins-Regular', sans-serif;
+}
