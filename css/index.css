@@ -82,15 +82,102 @@ body {
     align-items: center;
     justify-content: center;
     padding: 10px;
+    gap: 20px;
     background-color: rgb(255, 255, 255);
 }
 
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+}
+
+/* Grupo del input */
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 45px;
+    border-radius: 10px;
+    border: 1.5px solid #d0d0d0;
+    font-size: 16px;
+    outline: none;
+    transition: .2s ease;
+    font-family: 'Poppins-Regular', sans-serif;
+    background: #ffffff;
+}
+
+.input-group input::placeholder {
+    color: #474747;
+}
+
+/* Ícono izquierdo */
+.input-group .icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.6;
+}
+
+.input-group .icon img {
+    width: 24px;
+}
+
+/* Ícono para mostrar/ocultar contraseña */
+.input-group .toggle-pass {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.input-group .toggle-pass img {
+    width: 22px;
+    opacity: .6;
+}
+
+/* Focus */
+.input-group input:focus {
+    border-color: #48BEFF;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.20);
+}
+
+/* BOTÓN */
+.container button {
+    width: 100%;
+    padding: 14px;
+    background: #48BEFF;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: .2s ease;
+    font-family: 'Poppins-SemiBold', sans-serif;
+}
+
+.container button:hover {
+    background: #1e3fd1;
+}
+
+.container button:active {
+    background: #1b37b5;
+}
 
 .footer {
     position: fixed;
-    bottom: 10px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    color: #000000;
+    color: #474747;
+    font-size: 14px;
     font-family: 'Poppins-Regular', sans-serif;
 }

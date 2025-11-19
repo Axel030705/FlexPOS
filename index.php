@@ -13,16 +13,37 @@
 
     <div class="container">
         <h1>Bienvenido</h1>
-        <p>Ingresa tus credenciales para acceder al sistema</p>
+        <p>Ingrese sus credenciales para acceder al sistema</p>
 
-        <h1>Nombre de Usuario</h1>
+        <form action="">
 
+            <!-- Campo Usuario -->
+            <div class="input-group">
+                <span class="icon">
+                    <img src="assets/index/persona.svg" alt="icono usuario">
+                </span>
+                <input type="text" placeholder="Ingrese su usuario" required>
+            </div>
 
-        <h1>Contraseña</h1>
-        <button>Iniciar Sesión</button>
+            <!-- Campo Contraseña -->
+            <div class="input-group">
+                <span class="icon">
+                    <img src="assets/index/candado.svg" alt="icono candado">
+                </span>
+
+                <input type="password" placeholder="Ingrese su contraseña" id="password" required>
+
+                <span class="toggle-pass" onclick="togglePassword()">
+                    <img src="assets/index/ojo.svg" alt="ver contraseña">
+                </span>
+            </div>
+
+            <button type="submit">Iniciar Sesión</button>
+        </form>
 
         <a href="#">¿Olvidaste tu contraseña?</a>
     </div>
+
 
     <p class="footer">© 2025 FlexPOS. Todos los derechos reservados.</p>
 </body>
