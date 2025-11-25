@@ -236,6 +236,20 @@ body {
     filter: brightness(0) invert(1);
 }
 
+/* Estilo para módulo activo en Configuración */
+.container_conf li a.activo {
+    background: #4f8ef7;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.container_conf li a.activo img {
+    filter: brightness(0) invert(1);
+}
+
+
 
 
 
