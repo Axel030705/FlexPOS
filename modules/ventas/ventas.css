@@ -63,17 +63,72 @@
 }
 
 .modulo-ventas {
-    padding: 20px;
-    font-family: 'Poppins-light';
+    font-family: 'Poppins-Regular';
+    overflow-x: hidden;
 }
 
-.modulo-ventas h2 {
-    font-family: 'Poppins-SemiBold';
-    font-size: 24px;
-    margin-bottom: 10px;
+.main{
+    display: flex;
+    flex-direction: row;
 }
 
-.modulo-ventas p {
-    font-size: 16px;
+.div1{
+    width: 70%;
+    height: 100vh;
+    background-color: #006eff;
+}
+
+/*Estilos header*/
+
+.header{
+    width: 100%;
+    height: 10vh;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #dcdfe6;
+    border-radius: 8px;
+    padding: 8px 12px;
+    width: 20vw;
+    background-color: #fff;
+}
+
+.search-icon{
+    display: flex;
+    align-items: center;
+}
+
+.search-container .search-icon img {
+    width: 24px;
+    height: 24px;
+}
+
+.search-container input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    width: 100%;
     color: #555;
+}
+
+.search-container input::placeholder {
+    color: #9aa0a6;
+}
+
+
+
+
+.div2{
+    width: 30%;
+    height: 100vh;
+    background-color: #ff0000;
 }

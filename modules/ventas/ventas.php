@@ -5,6 +5,21 @@ require __DIR__ . '/../../db/conexion.php';
 ?>
 
 <div class="modulo-ventas">
-    <h2>📊 Ventas</h2>
-    <p>Aquí va el contenido del módulo de ventas.</p>
+    <div class="main">
+        <div class="div1">
+            <div class="header">
+                <h1>Ventas</h1>
+                <div class="search-container">
+                    <div class="search-icon">
+                        <img src="/assets/ventas/busqueda.svg" alt="Buscar">
+                    </div>
+                    <input type="text" placeholder="Buscar por nombre o código...">
+                </div>
+            </div>
+
+        </div>
+        <div class="div2">
+
+        </div>
+    </div>
 </div>

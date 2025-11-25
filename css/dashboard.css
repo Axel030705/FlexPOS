@@ -78,12 +78,8 @@ body {
 #contenido-modulo {
     width: calc(100vw - 15vw);
     height: 100vh;
-    padding: 20px;
     overflow-y: auto;
-    background: #f8f9fc;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    background: #ececec;
     transition: 0.3s ease;
 }
 
@@ -210,18 +206,16 @@ body {
     color: #666666;
 }
 
-
-
 /* Hover efecto moderno */
-/* #menu-modulos li a:hover {
-    background: #4f8ef7;
+#menu-modulos li a:hover {
+    background: #4f8df7a1;
     color: #fff;
     transform: translateX(4px);
 }
 
 #menu-modulos li a:hover img {
     filter: brightness(0) invert(1);
-} */
+}
 
 /*Estilo para el módulo activo*/
 #menu-modulos li a.activo {
@@ -246,6 +240,17 @@ body {
 }
 
 .container_conf li a.activo img {
+    filter: brightness(0) invert(1);
+}
+
+/* Hover efecto moderno */
+.container_conf li a:hover {
+    background: #4f8df7a1;
+    color: #fff;
+    transform: translateX(4px);
+}
+
+.container_conf li a:hover img {
     filter: brightness(0) invert(1);
 }
 
