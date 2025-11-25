@@ -1,0 +1,263 @@
+/*Tipografias*/
+@font-face {
+    font-family: 'Poppins-light';
+    src: url('../fonts/poppins/Poppins-Light.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-SemiBold';
+    src: url('../fonts/poppins/Poppins-SemiBold.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('../fonts/poppins/Poppins-Bold.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../fonts/poppins/Poppins-Regular.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cooper-Book';
+    src: url('../fonts/cooper-hewitt/CooperHewitt-Book.otf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cooper-light';
+    src: url('../fonts/cooper-hewitt/CooperHewitt-Light.otf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cooper-Bold';
+    src: url('../fonts/cooper-hewitt/CooperHewitt-Bold.otf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cooper-SemiBold';
+    src: url('../fonts/cooper-hewitt/CooperHewitt-Semibold.otf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*Reset basico*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: #ececec;
+    font-family: 'Poppins-Regular', sans-serif;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+/*Estilos para el contenedor de los modulos*/
+
+/* Contenedor general del módulo */
+#contenido-modulo {
+    width: calc(100vw - 15vw);
+    height: 100vh;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f8f9fc;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: 0.3s ease;
+}
+
+
+.sidebar {
+    width: 15vw;
+    height: 100vh;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: white;
+}
+
+.container_conf {
+    width: 90%;
+    margin-top: auto;
+    /*⬅ Esto lo manda abajo*/
+    list-style: none;
+}
+
+.container_logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+/* Estilos generales del menú */
+#menu-modulos {
+    width: 90%;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Cada elemento de la lista */
+#menu-modulos li {
+    width: 100%;
+}
+
+/* Link del módulo */
+#menu-modulos li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    background: #ffffff;
+    border-radius: 10px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: #333;
+    transition: all 0.3s ease;
+    /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05); */
+}
+
+/* Icono del módulo */
+#menu-modulos li a img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/* Link del módulo de configuracion*/
+.container_conf li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    background: #ffffff;
+    border-radius: 10px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+/* Icono del módulo */
+.container_conf li a img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/*Estilos para el div del perfil*/
+.div_perfil {
+    width: 100%;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.div_perfil img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.div_perfil2 {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins-Regular', sans-serif;
+    font-size: 14px;
+    color: #000000;
+}
+
+.div_perfil2 h1 {
+    font-size: 16px;
+    color: #000000;
+}
+
+.div_perfil2 span {
+    font-size: 14px;
+    color: #666666;
+}
+
+
+
+/* Hover efecto moderno */
+/* #menu-modulos li a:hover {
+    background: #4f8ef7;
+    color: #fff;
+    transform: translateX(4px);
+}
+
+#menu-modulos li a:hover img {
+    filter: brightness(0) invert(1);
+} */
+
+/*Estilo para el módulo activo*/
+#menu-modulos li a.activo {
+    background: #4f8ef7;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+#menu-modulos li a.activo img {
+    filter: brightness(0) invert(1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*Estilos para SwetAlert*/
+
+/* Estilo para botón principal del Sweet Alert*/
+.swal2-confirm {
+    background-color: #48BEFF !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-family: 'Poppins-SemiBold', sans-serif !important;
+}
+
+/* Color en hover (opcional) */
+.swal2-confirm:hover {
+    background-color: #36B9FF !important;
+}

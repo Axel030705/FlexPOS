@@ -1,10 +1,10 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use Dotenv\Dotenv;
 
 // Cargar variables de entorno desde .env
-$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
 $host = $_ENV['DB_HOST'];

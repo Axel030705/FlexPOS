@@ -1,23 +1,15 @@
 <?php
+session_start();
 header("Content-Type: application/json");
 
-// Cargar .env
-$dotenv = parse_ini_file(__DIR__ . '/../.env');
-
-$host = $dotenv['DB_HOST'];
-$dbname = $dotenv['DB_NAME'];
-$user = $dotenv['DB_USER'];
-$pass = $dotenv['DB_PASS'];
-$charset = $dotenv['DB_CHARSET'];
-
-
-$dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
-
 try {
-    $pdo = new PDO($dsn, $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $dotenv = parse_ini_file(__DIR__ . '/../.env');
 
-    // Recibir datos desde fetch()
+    $dsn = "mysql:host={$dotenv['DB_HOST']};dbname={$dotenv['DB_NAME']};charset={$dotenv['DB_CHARSET']}";
+    $pdo = new PDO($dsn, $dotenv['DB_USER'], $dotenv['DB_PASS'], [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
+
     $usuario = isset($_POST['usuario']) ? trim($_POST['usuario']) : '';
     $password = isset($_POST['password']) ? trim($_POST['password']) : '';
 
@@ -26,8 +18,17 @@ try {
         exit;
     }
 
-    // Consulta del usuario
-    $stmt = $pdo->prepare("SELECT id, nombre, password FROM usuarios WHERE correo = :usuario LIMIT 1");
+    if (!filter_var($usuario, FILTER_VALIDATE_EMAIL)) {
+        echo json_encode(["status" => "error", "msg" => "Formato de usuario inválido"]);
+        exit;
+    }
+
+    $stmt = $pdo->prepare("
+        SELECT id, nombre, password, activo, plan, nombre_negocio 
+        FROM usuarios 
+        WHERE correo = :usuario 
+        LIMIT 1
+    ");
     $stmt->bindParam(":usuario", $usuario);
     $stmt->execute();
     $userData = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -37,18 +38,25 @@ try {
         exit;
     }
 
-    // Verificar contraseña
-    if (password_verify($password, $userData['password'])) {
-
-        // Iniciar sesión (opcional)
-        session_start();
-        $_SESSION['usuario_id'] = $userData['id'];
-        $_SESSION['usuario'] = $userData['nombre'];
-
-        echo json_encode(["status" => "ok"]);
-    } else {
-        echo json_encode(["status" => "error", "msg" => "Contraseña incorrecta"]);
+    if ($userData['activo'] != 1) {
+        echo json_encode(["status" => "error", "msg" => "Tu cuenta está inactiva. Contacta a tu proveedor."]);
+        exit;
     }
+
+    if (!password_verify($password, $userData['password'])) {
+        echo json_encode(["status" => "error", "msg" => "Contraseña incorrecta"]);
+        exit;
+    }
+
+    // Iniciar sesión
+    $_SESSION['usuario_id'] = $userData['id'];
+    $_SESSION['usuario'] = $userData['nombre'];
+    $_SESSION['plan'] = $userData['plan'];
+    $_SESSION['nombre_negocio'] = $userData['nombre_negocio'];
+
+    echo json_encode(["status" => "ok"]);
+
 } catch (PDOException $e) {
-    echo json_encode(["status" => "error", "msg" => "Error en la conexión: " . $e->getMessage()]);
+    error_log("DB Error: " . $e->getMessage());
+    echo json_encode(["status" => "error", "msg" => "Error interno. Intenta más tarde."]);
 }

@@ -1,0 +1,79 @@
+/*Tipografias*/
+@font-face {
+    font-family: 'Poppins-light';
+    src: url('../../fonts/poppins/Poppins-Light.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-SemiBold';
+    src: url('../../fonts/poppins/Poppins-SemiBold.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('../../fonts/poppins/Poppins-Bold.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../fonts/poppins/Poppins-Regular.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cooper-Book';
+    src: url('../../fonts/cooper-hewitt/CooperHewitt-Book.otf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cooper-light';
+    src: url('../../fonts/cooper-hewitt/CooperHewitt-Light.otf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cooper-Bold';
+    src: url('../../fonts/cooper-hewitt/CooperHewitt-Bold.otf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cooper-SemiBold';
+    src: url('../../fonts/cooper-hewitt/CooperHewitt-Semibold.otf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*Reset basico*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.modulo-ventas {
+    padding: 20px;
+    font-family: 'Poppins-light';
+}
+
+.modulo-ventas h2 {
+    font-family: 'Poppins-SemiBold';
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.modulo-ventas p {
+    font-size: 16px;
+    color: #555;
+}

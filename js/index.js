@@ -28,17 +28,27 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         method: 'POST',
         body: new FormData(document.getElementById("loginForm"))
     })
-        .then(res => res.json())
-        .then(data => {
-            if (data.status === 'ok') {
-                Swal.fire({ icon: 'success', title: 'Bienvenido' }).then(() => {
-                    window.location.href = "dashboard.php";
-                });
-            } else {
-                Swal.fire({ icon: 'error', title: 'Credenciales incorrectas' });
-            }
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'ok') {
+            Swal.fire({ icon: 'success', title: 'Bienvenido' }).then(() => {
+                window.location.href = "dashboard.php";
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: data.msg || 'Credenciales incorrectas'
+            });
+        }
+    })
+    .catch(() => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error en la conexión con el servidor'
         });
-
+    });
 });
 
 function togglePassword() {
@@ -53,4 +63,3 @@ const observer = new MutationObserver(() => {
     }
 });
 observer.observe(document.body, { attributes: true });
-
