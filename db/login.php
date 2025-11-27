@@ -24,7 +24,7 @@ try {
     }
 
     $stmt = $pdo->prepare("
-        SELECT id, nombre, password, activo, plan, nombre_negocio 
+        SELECT id, nombre, password, activo, plan, id_negocio 
         FROM usuarios 
         WHERE correo = :usuario 
         LIMIT 1
@@ -52,7 +52,7 @@ try {
     $_SESSION['usuario_id'] = $userData['id'];
     $_SESSION['usuario'] = $userData['nombre'];
     $_SESSION['plan'] = $userData['plan'];
-    $_SESSION['nombre_negocio'] = $userData['nombre_negocio'];
+    $_SESSION['id_negocio'] = $userData['id_negocio'];
 
     echo json_encode(["status" => "ok"]);
 

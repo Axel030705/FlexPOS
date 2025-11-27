@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuario_id'])) {
 // Datos de sesión
 $usuarioId = $_SESSION['usuario_id'];
 $nombreUsuario = $_SESSION['usuario'];
-$nombreNegocio = $_SESSION['nombre_negocio'];
+$idNegocio = $_SESSION['id_negocio'];
 $planUsuario = $_SESSION['plan'];
 
 // Conexión a la BD
@@ -89,7 +89,7 @@ $moduloConfig = $stmtConfig->fetch(PDO::FETCH_ASSOC);
                 <img src="assets/index/persona.svg" alt="Icono de usuario">
                 <div class="div_perfil2">
                     <h1><?= htmlspecialchars($nombreUsuario) ?></span></h1>
-                    <span><?= htmlspecialchars($nombreNegocio) ?></span>
+                    <span><?= htmlspecialchars($idNegocio) ?></span>
                 </div>
             </div>
         </div>

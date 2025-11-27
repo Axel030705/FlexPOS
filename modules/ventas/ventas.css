@@ -67,20 +67,22 @@
     overflow-x: hidden;
 }
 
-.main{
+.main {
     display: flex;
     flex-direction: row;
+    height: 100vh;
 }
 
-.div1{
+.div1 {
     width: 70%;
     height: 100vh;
     background-color: #006eff;
+    overflow-y: auto;
 }
 
 /*Estilos header*/
 
-.header{
+.header {
     width: 100%;
     height: 10vh;
     background-color: #fff;
@@ -89,6 +91,10 @@
     justify-content: space-between;
     padding: 0 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }
 
 .search-container {
@@ -102,7 +108,7 @@
     background-color: #fff;
 }
 
-.search-icon{
+.search-icon {
     display: flex;
     align-items: center;
 }
@@ -124,11 +130,135 @@
     color: #9aa0a6;
 }
 
+/*Contenedor principal para filtros y productos*/
+.container_main_p {
+    width: 100%;
+    height: 90vh;
+    background-color: #ececec;
+}
+
+.container_filtros {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 20px;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    background-color: yellow;
+
+    position: sticky;
+    top: 10vh;
+    z-index: 2;
+}
+
+.container_filtros.dragging {
+    cursor: grabbing;
+    user-select: none;
+}
+
+
+.container_filtros::-webkit-scrollbar {
+    display: none;
+}
+
+.container_filtros button {
+    flex: 0 0 auto;
+    padding: 8px 20px;
+    background: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Poppins-SemiBold';
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.container_filtros button:hover {
+    background: #36B9FF;
+    color: white;
+    transform: scale(1.05);
+}
+
+.container_filtros button.active {
+    background: #48BEFF;
+    color: white;
+}
+
+.container_productos {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #36B9FF;
+}
+
+.container_productos .producto {
+    width: 250px;
+    height: 280px;
+    padding: 8px;
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+}
+
+.container_productos .producto:hover {
+    transform: scale(1.04);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.img-producto {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.img-producto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.producto .texto-producto {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 5px;
+    padding: 0 10px;
+}
+
+.producto h1 {
+    font-size: 16px;
+    font-family: "Poppins-SemiBold";
+}
+
+.producto p {
+    font-size: 15px;
+    color: #555;
+}
 
 
 
-.div2{
+
+.div2 {
     width: 30%;
     height: 100vh;
     background-color: #ff0000;
+    position: sticky;
+    top: 0;
+    flex-shrink: 0;
 }
