@@ -75,9 +75,8 @@
 
 .div1 {
     width: 70%;
-    height: 100vh;
-    background-color: #006eff;
     overflow-y: auto;
+    border: 1px solid #dcdfe6;
 }
 
 /*Estilos header*/
@@ -95,6 +94,25 @@
     position: sticky;
     top: 0;
     z-index: 2;
+}
+
+.header h1 {
+    font-size: 30px;
+    font-family: 'Poppins-SemiBold';
+}
+
+.header .imagen_menu {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    cursor: pointer;
+    display: none;
+}
+
+.menu-title {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .search-container {
@@ -148,11 +166,10 @@
     padding: 20px;
     scroll-behavior: smooth;
     scrollbar-width: none;
-    background-color: yellow;
-
     position: sticky;
     top: 10vh;
     z-index: 2;
+    background: #ececec;
 }
 
 .container_filtros.dragging {
@@ -187,19 +204,47 @@
     color: white;
 }
 
-.container_productos {
+/* .container_productos {
     width: 100%;
-    height: auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 15px;
     padding: 20px;
-    overflow-y: auto;
-    background-color: #36B9FF;
+    background: #ececec;
+} */
+
+.container_productos {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    /* Siempre 250px */
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background: #ececec;
 }
+
+
+.div1::-webkit-scrollbar {
+    display: none;
+}
+
+/* .container_productos .producto {
+    width: 250px; //Comentado
+    height: 280px;
+    padding: 8px;
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+} */
 
 .container_productos .producto {
     width: 250px;
+    /* Fijo */
     height: 280px;
     padding: 8px;
     border-radius: 10px;
@@ -210,6 +255,7 @@
     border: 1px solid #e5e7eb;
     overflow: hidden;
 }
+
 
 .container_productos .producto:hover {
     transform: scale(1.04);
@@ -252,8 +298,6 @@
 }
 
 
-
-
 .div2 {
     width: 30%;
     height: 100vh;
@@ -261,4 +305,256 @@
     position: sticky;
     top: 0;
     flex-shrink: 0;
+    overflow: hidden;
+}
+
+.div2 .header {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Poppins-SemiBold';
+    font-size: 14px;
+    padding: 20px;
+    border: 1px solid #dcdfe6;
+    background-color: #ffffff;
+}
+
+.searchC-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #dcdfe6;
+    border-radius: 8px;
+    padding: 8px 12px;
+    width: 10vw;
+    background-color: #fff;
+}
+
+.searchC-icon {
+    display: flex;
+    align-items: center;
+}
+
+.searchC-container .searchC-icon img {
+    width: 24px;
+    height: 24px;
+}
+
+.searchC-container input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    width: 100%;
+    color: #555;
+}
+
+.searchC-container input::placeholder {
+    color: #9aa0a6;
+}
+
+.container_pedido {
+    width: 100%;
+    height: 55vh;
+    overflow-y: auto;
+    background-color: white;
+}
+
+.productos_pedido {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    background-color: rgb(255, 255, 255);
+}
+
+.producto-carrito {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    padding: 10px 15px;
+    gap: 25px;
+}
+
+.img-carrito {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.info-carrito {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 8px;
+    align-items: center;
+}
+
+.nombre-precio {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.nombre-precio h3 {
+    font-size: 20px;
+    font-family: 'Poppins-SemiBold';
+}
+
+.nombre-precio span {
+    font-size: 16px;
+    font-family: 'Poppins-Regular';
+}
+
+.cantidad-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 10px;
+    border: 1px solid #ececec;
+    background-color: white;
+}
+
+.cantidad-control span {
+    font-size: 18px;
+    font-family: 'Poppins-SemiBold';
+}
+
+.cantidad-control button {
+    width: 25px;
+    height: 25px;
+    border: none;
+    color: black;
+    font-size: 18px;
+    line-height: 18px;
+    cursor: pointer;
+    background-color: white;
+}
+
+.cantidad-control button:hover {
+    background-color: #ececec;
+}
+
+.info-carrito p {
+    font-size: 18px;
+    font-family: 'Poppins-Regular';
+}
+
+.total {
+    font-size: 18px;
+    font-family: 'Poppins-Regular';
+}
+
+.eliminar-carrito {
+    padding: 5px 10px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.eliminar-carrito img {
+    width: 24px;
+    height: 24px;
+}
+
+.eliminar-carrito:hover {
+    background-color: #ff000052;
+}
+
+
+.resumen_pedido {
+    width: 100%;
+    height: 35vh;
+    padding: 20px;
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+.detalle_totales {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fila_subtotal {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Poppins-Light';
+    font-size: 17px;
+    color: #474747;
+}
+
+.fila_impuestos {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Poppins-Light';
+    font-size: 17px;
+    color: #474747;
+}
+
+.fila_total {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Poppins-SemiBold';
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.container_btns {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+
+}
+
+.btn_finalizar {
+    width: 100%;
+    height: 50px;
+    background-color: #006eff;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Poppins-SemiBold';
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.btn_finalizar:hover {
+    background-color: #0051cc;
+}
+
+.btn_vaciar {
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    color: #ff0000;
+    font-family: 'Poppins-SemiBold';
+    font-size: 18px;
+    cursor: pointer;
+    border: solid 1px #ff0000;
+}
+
+.btn_vaciar:hover {
+    color: white;
+    background-color: #ff0000;
 }

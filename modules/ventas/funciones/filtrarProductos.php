@@ -34,7 +34,7 @@ try {
                 ? '/uploads/imagenes/productos/' . htmlspecialchars($producto['url_imagen'])
                 : '/uploads/imagenes/productos/default.svg'; // Imagen por defecto si no tiene
 
-            echo '<div class="producto">';
+            echo '<div class="producto" data-id="' . $producto['id'] . '">';
             echo '  <div class="img-producto">';
             echo '      <img src="' . $imagen . '" alt="' . htmlspecialchars($producto['nombre']) . '">';
             echo '  </div>';

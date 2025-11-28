@@ -14,6 +14,12 @@ $planUsuario = $_SESSION['plan'];
 // Conexión a la BD
 require 'db/conexion.php';
 
+//Consultar datos del negocio
+$stmt_negocio = $conn->prepare("SELECT nombre FROM negocios WHERE id = :id_negocio");
+$stmt_negocio->bindParam(":id_negocio", $idNegocio, PDO::PARAM_INT);
+$stmt_negocio->execute();
+$negocio = $stmt_negocio->fetch(PDO::FETCH_ASSOC);
+
 // Consulta los módulos activos para este usuario
 $stmt = $conn->prepare("
     SELECT m.nombre, m.archivo, m.icono
@@ -89,8 +95,11 @@ $moduloConfig = $stmtConfig->fetch(PDO::FETCH_ASSOC);
                 <img src="assets/index/persona.svg" alt="Icono de usuario">
                 <div class="div_perfil2">
                     <h1><?= htmlspecialchars($nombreUsuario) ?></span></h1>
-                    <span><?= htmlspecialchars($idNegocio) ?></span>
+                    <span><?= htmlspecialchars($negocio['nombre']) ?></span>
                 </div>
+                <form action="logout.php" method="post">
+                    <button type="submit" class="btn-cerrar-sesion">Cerrar sesión</button>
+                </form>
             </div>
         </div>
 

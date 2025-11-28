@@ -4,6 +4,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const modulosExtra = document.querySelectorAll('.container_conf a');
     const todosLosLinks = document.querySelectorAll('#menu-modulos a, .container_conf a');
 
+    // Toggle del sidebar con el logo
+    const logo = document.querySelector('.container_logo');
+    const sidebar = document.querySelector('.sidebar');
+
+    if (logo && sidebar) {
+        logo.addEventListener('click', () => {
+            const img_menu = document.querySelector("#contenido-modulo .imagen_menu");
+            sidebar.classList.toggle('oculto');
+            contenido.classList.toggle('contenido-expandido');
+            img_menu.classList.toggle("icono_visible");
+        });
+    }
+
     // Evento para módulos principales
     links.forEach(link => {
         link.addEventListener('click', (e) => cargarModuloDesdeLink(e, link));
@@ -46,6 +59,16 @@ document.addEventListener("DOMContentLoaded", () => {
                     contenido.innerHTML = data;
                     cargarCSSModulo(nombreModulo);
                     cargarJSModulo(nombreModulo);
+
+                    // 🔹 Asignar evento después de que el contenido fue cargado
+                    const img_menu = document.querySelector("#contenido-modulo .imagen_menu");
+                    if (img_menu) {
+                        img_menu.addEventListener('click', () => {
+                            sidebar.classList.remove('oculto');
+                            contenido.classList.remove('contenido-expandido');
+                            img_menu.classList.remove("icono_visible");
+                        });
+                    }
                 }, 300);
             })
             .catch(error => {

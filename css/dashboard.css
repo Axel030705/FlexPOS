@@ -80,9 +80,8 @@ body {
     height: 100vh;
     overflow-y: auto;
     background: #ececec;
-    transition: 0.3s ease;
+    transition: width 0.3s ease;
 }
-
 
 .sidebar {
     width: 15vw;
@@ -93,12 +92,28 @@ body {
     align-items: center;
     gap: 20px;
     background-color: white;
+    transition: all 0.3s ease;
+}
+
+.sidebar.oculto {
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+/* Contenido se expande */
+#contenido-modulo.contenido-expandido {
+    width: 100vw !important;
+}
+
+.icono_visible {
+    display: flex !important;
 }
 
 .container_conf {
     width: 90%;
     margin-top: auto;
-    /*⬅ Esto lo manda abajo*/
     list-style: none;
 }
 
@@ -109,6 +124,7 @@ body {
     align-items: center;
     margin-top: 2vh;
     margin-bottom: 2vh;
+    cursor: pointer;
 }
 
 /* Estilos generales del menú */
