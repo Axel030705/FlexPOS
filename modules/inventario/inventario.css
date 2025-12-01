@@ -1,0 +1,360 @@
+/*Tipografias*/
+@font-face {
+    font-family: 'Poppins-light';
+    src: url('../../fonts/poppins/Poppins-Light.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-SemiBold';
+    src: url('../../fonts/poppins/Poppins-SemiBold.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('../../fonts/poppins/Poppins-Bold.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../../fonts/poppins/Poppins-Regular.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cooper-Book';
+    src: url('../../fonts/cooper-hewitt/CooperHewitt-Book.otf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cooper-light';
+    src: url('../../fonts/cooper-hewitt/CooperHewitt-Light.otf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cooper-Bold';
+    src: url('../../fonts/cooper-hewitt/CooperHewitt-Bold.otf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cooper-SemiBold';
+    src: url('../../fonts/cooper-hewitt/CooperHewitt-Semibold.otf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*Reset basico*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.modulo-ventas {
+    font-family: 'Poppins-Regular';
+    overflow-x: hidden;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.div1 {
+    width: 100%;
+    overflow-y: auto;
+    border: 1px solid #dcdfe6;
+}
+
+/*Estilos header*/
+
+.header {
+    width: 100%;
+    height: 10vh;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.header h1 {
+    font-size: 30px;
+    font-family: 'Poppins-SemiBold';
+}
+
+.header .imagen_menu {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    cursor: pointer;
+    display: none;
+}
+
+.menu-title {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #dcdfe6;
+    border-radius: 8px;
+    padding: 8px 12px;
+    width: 20vw;
+    background-color: #fff;
+}
+
+.search-icon {
+    display: flex;
+    align-items: center;
+}
+
+.search-container .search-icon img {
+    width: 24px;
+    height: 24px;
+}
+
+.search-container input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    width: 100%;
+    color: #555;
+}
+
+.search-container input::placeholder {
+    color: #9aa0a6;
+}
+
+/*Contenedor principal para filtros y productos*/
+.container_main_p {
+    width: 100%;
+    height: 90vh;
+    /* background-color: #ececec; */
+    background-color: #36B9FF;
+}
+
+.container_filtros {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 20px;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    position: sticky;
+    top: 10vh;
+    z-index: 2;
+    background: #ececec;
+}
+
+.container_filtros.dragging {
+    cursor: grabbing;
+    user-select: none;
+}
+
+
+.container_filtros::-webkit-scrollbar {
+    display: none;
+}
+
+.container_filtros button {
+    flex: 0 0 auto;
+    padding: 8px 20px;
+    background: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Poppins-SemiBold';
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.container_filtros button:hover {
+    background: #36B9FF;
+    color: white;
+    transform: scale(1.05);
+}
+
+.container_filtros button.active {
+    background: #48BEFF;
+    color: white;
+}
+
+.container_productos {
+    width: 100%;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background: #ececec;
+}
+
+
+.div1::-webkit-scrollbar {
+    display: none;
+}
+
+/*Estilos para la tabla*/
+
+/* Contenedor completo */
+.tabla-productos-filtrados {
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #ffffff;
+}
+
+/* Tabla general */
+#tablaProductos {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    background-color: white;
+}
+
+/* Encabezado */
+#tablaProductos thead {
+    background: #ffffff;
+}
+
+#tablaProductos th {
+    padding: 14px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: #6b7280;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #ffffff;
+}
+
+/* Filas */
+#tablaProductos tbody tr {
+    transition: background 0.2s;
+}
+
+#tablaProductos tbody tr:hover {
+    background: #ffffff;
+}
+
+/* Celdas */
+#tablaProductos td {
+    padding: 14px 12px;
+    vertical-align: middle;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Columna de producto con imagen */
+.td-producto {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.td-producto img {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.td-producto .info {
+    display: flex;
+    flex-direction: column;
+}
+
+.td-producto .nombre {
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.td-producto .sku {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+/* Stock con indicador */
+.stock-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+}
+
+.stock-status .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.stock-verde .dot {
+    background: #10b981;
+}
+
+.stock-naranja .dot {
+    background: #f97316;
+}
+
+.stock-rojo .dot {
+    background: #ef4444;
+}
+
+.stock-verde {
+    color: #10b981;
+}
+
+.stock-bajo {
+    color: #f97316;
+}
+
+.stock-rojo {
+    color: #ef4444;
+}
+
+/* Acciones */
+.td-acciones {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-editar, .btn-eliminar, .btn-ocultar {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 4px;
+    transition: transform .2s;
+}
+
+.btn-editar img { width: 24px; }
+.btn-eliminar img { width: 24px; }
+.btn-ocultar img {width: 24px;}
+
+.btn-editar:hover,
+.btn-eliminar:hover,
+.btn-ocultar:hover {
+    transform: scale(1.2);
+}
