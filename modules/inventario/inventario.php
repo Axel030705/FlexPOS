@@ -42,11 +42,27 @@ $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <img src="../../assets/inventario/menu.svg" class="imagen_menu" alt="icono menu">
                     <h1>Inventario</h1>
                 </div>
-                <div class="search-container">
-                    <div class="search-icon">
-                        <img src="/assets/inventario/busqueda.svg" alt="Buscar">
+
+                <div class="container_acciones">
+
+                    <div class="container_btns">
+                        <button class="btn-add" data-negocio="<?= $idNegocio ?>">
+                            <img src="/assets/inventario/add.svg" alt="icono">
+                            Nuevo producto
+                        </button>
+
+                        <button class="btn-add" data-negocio="<?= $idNegocio ?>">
+                            <img src="/assets/inventario/add.svg" alt="icono">
+                            Nueva categoría
+                        </button>
                     </div>
-                    <input type="text" id="buscadorProductos" placeholder="Buscar por nombre...">
+
+                    <div class="search-container">
+                        <div class="search-icon">
+                            <img src="/assets/inventario/busqueda.svg" alt="Buscar">
+                        </div>
+                        <input type="text" id="buscadorProductos" placeholder="Buscar por nombre...">
+                    </div>
                 </div>
             </div>
 
@@ -66,6 +82,8 @@ $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <button data-cat="stock_bajo">Stock bajo</button>
                     <button data-cat="sin_stock">Sin stock</button>
                     <button data-cat="ocultos">Ocultos</button>
+                    <button data-cat="añadir_producto">Agregar producto</button>
+                    <button data-cat="añadir_categoria">Agregar categoria</button>
 
                 </div>
 

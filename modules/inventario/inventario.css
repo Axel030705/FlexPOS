@@ -114,6 +114,12 @@
     gap: 20px;
 }
 
+.container_acciones {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .search-container {
     display: flex;
     align-items: center;
@@ -145,6 +151,30 @@
 
 .search-container input::placeholder {
     color: #9aa0a6;
+}
+
+.container_btns{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-add {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: white;
+    background-color: #48BEFF;
+    border: 1px solid #48BEFF;
+    border-radius: 8px;
+    font-family: 'Poppins-Regular';
+}
+
+.btn-add img {
+    width: 24px;
+    height: 24px;
 }
 
 /*Contenedor principal para filtros y productos*/
@@ -341,7 +371,9 @@
     gap: 10px;
 }
 
-.btn-editar, .btn-eliminar, .btn-ocultar {
+.btn-editar,
+.btn-eliminar,
+.btn-ocultar {
     border: none;
     background: transparent;
     cursor: pointer;
@@ -349,9 +381,17 @@
     transition: transform .2s;
 }
 
-.btn-editar img { width: 24px; }
-.btn-eliminar img { width: 24px; }
-.btn-ocultar img {width: 24px;}
+.btn-editar img {
+    width: 24px;
+}
+
+.btn-eliminar img {
+    width: 24px;
+}
+
+.btn-ocultar img {
+    width: 24px;
+}
 
 .btn-editar:hover,
 .btn-eliminar:hover,

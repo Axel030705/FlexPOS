@@ -65,7 +65,7 @@ function filtrarProductos(categoria) {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: `categoria=${encodeURIComponent(categoria)}`
     })
-        .then((response) => response.json()) // ← IMPORTANTE: como JSON
+        .then((response) => response.json()) // JSON
         .then((productos) => {
             const tbody = document.querySelector("#tablaProductos tbody");
 
