@@ -4,28 +4,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const modulosExtra = document.querySelectorAll('.container_conf a');
     const todosLosLinks = document.querySelectorAll('#menu-modulos a, .container_conf a');
 
-    // Toggle del sidebar con el logo
     const logo = document.querySelector('.container_logo');
     const sidebar = document.querySelector('.sidebar');
 
+    // Toggle del sidebar con el logo
     if (logo && sidebar) {
         logo.addEventListener('click', () => {
+
+            // 🔹 Volver a buscar elementos actuales del módulo cargado
             const img_menu = document.querySelector("#contenido-modulo .imagen_menu");
+            const sidebar_ventas = document.querySelector(".div2");
+            const container_products_ventas = document.querySelector(".div1");
+
             sidebar.classList.toggle('oculto');
             contenido.classList.toggle('contenido-expandido');
-            img_menu.classList.toggle("icono_visible");
+
+            if (img_menu) img_menu.classList.toggle("icono_visible");
+            if (sidebar_ventas) sidebar_ventas.classList.toggle("contenido-expandido");
+            if (container_products_ventas) container_products_ventas.classList.toggle("contenido-expandido");
         });
     }
 
-    // Evento para módulos principales
-    links.forEach(link => {
-        link.addEventListener('click', (e) => cargarModuloDesdeLink(e, link));
-    });
-
-    // Evento para módulo Configuración
-    modulosExtra.forEach(link => {
-        link.addEventListener('click', (e) => cargarModuloDesdeLink(e, link));
-    });
+    // Eventos
+    links.forEach(link => link.addEventListener('click', (e) => cargarModuloDesdeLink(e, link)));
+    modulosExtra.forEach(link => link.addEventListener('click', (e) => cargarModuloDesdeLink(e, link)));
 
     function cargarModuloDesdeLink(e, link) {
         e.preventDefault();
@@ -36,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const nombreModulo = partes[partes.length - 2] || null;
         if (!nombreModulo) return;
 
-        // Quitar activo de todos y asignarlo al nuevo
         todosLosLinks.forEach(l => l.classList.remove('activo'));
         link.classList.add('activo');
 
@@ -57,18 +58,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 setTimeout(() => {
                     Swal.close();
                     contenido.innerHTML = data;
+
                     cargarCSSModulo(nombreModulo);
                     cargarJSModulo(nombreModulo);
 
-                    // 🔹 Asignar evento después de que el contenido fue cargado
+                    // 🔹 Reset después de cargar Módulo
+                    resetUI();
+
+                    // Activar botón del módulo cargado
                     const img_menu = document.querySelector("#contenido-modulo .imagen_menu");
                     if (img_menu) {
                         img_menu.addEventListener('click', () => {
                             sidebar.classList.remove('oculto');
                             contenido.classList.remove('contenido-expandido');
+
+                            const sidebar_ventas = document.querySelector(".div2");
+                            const container_products_ventas = document.querySelector(".div1");
+
                             img_menu.classList.remove("icono_visible");
+                            if (sidebar_ventas) sidebar_ventas.classList.remove("contenido-expandido");
+                            if (container_products_ventas) container_products_ventas.classList.remove("contenido-expandido");
                         });
                     }
+
                 }, 300);
             })
             .catch(error => {
@@ -79,6 +91,20 @@ document.addEventListener("DOMContentLoaded", () => {
                     text: 'Intenta nuevamente.'
                 });
             });
+    }
+
+    // 🔹 Siempre obtener elementos actuales del módulo
+    function resetUI() {
+        sidebar.classList.remove('oculto');
+        contenido.classList.remove('contenido-expandido');
+
+        const img_menu = document.querySelector("#contenido-modulo .imagen_menu");
+        const sidebar_ventas = document.querySelector(".div2");
+        const container_products_ventas = document.querySelector(".div1");
+
+        if (img_menu) img_menu.classList.remove("icono_visible");
+        if (sidebar_ventas) sidebar_ventas.classList.remove("contenido-expandido");
+        if (container_products_ventas) container_products_ventas.classList.remove("contenido-expandido");
     }
 
     function cargarCSSModulo(nombreModulo) {

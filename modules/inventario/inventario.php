@@ -46,12 +46,12 @@ $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="container_acciones">
 
                     <div class="container_btns">
-                        <button class="btn-add" data-negocio="<?= $idNegocio ?>">
+                        <button class="btn-add" id="btnNuevoProducto" data-negocio="<?= $idNegocio ?>">
                             <img src="/assets/inventario/add.svg" alt="icono">
                             Nuevo producto
                         </button>
 
-                        <button class="btn-add" data-negocio="<?= $idNegocio ?>">
+                        <button class="btn-add" id="btnNuevaCategoria" data-negocio="<?= $idNegocio ?>">
                             <img src="/assets/inventario/add.svg" alt="icono">
                             Nueva categoría
                         </button>
@@ -82,8 +82,8 @@ $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <button data-cat="stock_bajo">Stock bajo</button>
                     <button data-cat="sin_stock">Sin stock</button>
                     <button data-cat="ocultos">Ocultos</button>
-                    <button data-cat="añadir_producto">Agregar producto</button>
-                    <button data-cat="añadir_categoria">Agregar categoria</button>
+                    <!-- <button data-cat="añadir_producto">Agregar producto</button>
+                    <button data-cat="añadir_categoria">Agregar categoria</button> -->
 
                 </div>
 

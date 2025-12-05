@@ -79,6 +79,10 @@
     border: 1px solid #dcdfe6;
 }
 
+.div1.contenido-expandido {
+    width: 75% !important;
+}
+
 /*Estilos header*/
 
 .header {
@@ -306,6 +310,10 @@
     top: 0;
     flex-shrink: 0;
     overflow: hidden;
+}
+
+.div2.contenido-expandido {
+    width: 25% !important;
 }
 
 .div2 .header {

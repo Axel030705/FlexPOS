@@ -89,7 +89,7 @@ function filtrarProductos(categoria) {
                     </td>
                     <td>$${parseFloat(p.costo).toFixed(2)}</td>
                     <td>$${parseFloat(p.precio).toFixed(2)}</td>
-                    <td>${p.proveedor || "—"}</td>
+                    <td>${p.proveedor || "No se asigno un proveedor"}</td>
                     <td>
                         <button class="btn-editar" data-id="${p.id}">
                             <img src="/assets/inventario/editarP.svg" alt="Editar">
@@ -196,7 +196,7 @@ function ocultarProducto(id) {
                         fila.remove();
                         Swal.fire("Listo", "Producto ocultado", "success");
                     } else {
-                        // 👇 Si se hizo visible, cambiamos icono
+                        //Si se hizo visible, cambiamos icono
                         btn.setAttribute("data-activo", "1");
                         btn.querySelector("img").src = "/assets/inventario/visible.svg";
                         Swal.fire("Listo", "Producto visible", "success");
@@ -215,6 +215,90 @@ function ocultarProducto(id) {
     });
 }
 
+//ModaLes
+
+function iniciarBotonesModales() {
+    const btnProducto = document.getElementById("btnNuevoProducto");
+    const btnCategoria = document.getElementById("btnNuevaCategoria");
+
+    if (btnProducto)
+        btnProducto.addEventListener("click", abrirModalNuevoProducto);
+
+    if (btnCategoria)
+        btnCategoria.addEventListener("click", abrirModalNuevaCategoria);
+}
+
+
+function abrirModalNuevoProducto() {
+    cargarCSS("/modules/inventario/modals/modal_nuevo_producto.css");
+    cargarModal("/modules/inventario/modals/modal_nuevo_producto.php");
+    cargarJS("/modules/inventario/modals/modal_nuevo_producto.js");
+}
+
+function abrirModalNuevaCategoria() {
+    cargarCSS("/modules/inventario/modals/modal_producto.css");
+    cargarModal("/modules/inventario/modals/modal_nueva_categoria.php");
+    cargarJS("/modules/inventario/modals/modal_nuevo_producto.js");
+}
+
+
+function cargarModal(rutaArchivo) {
+    fetch(rutaArchivo)
+        .then(res => res.text())
+        .then(html => {
+            const modalContainer = document.createElement("div");
+            modalContainer.classList.add("modal-dinamico");
+            modalContainer.innerHTML = html;
+
+            document.body.appendChild(modalContainer);
+
+            // Cerrar cuando el modal tenga un botón cerrar
+            const btnCerrar = modalContainer.querySelector(".cerrar-modal");
+            if (btnCerrar) {
+                btnCerrar.addEventListener("click", () => modalContainer.remove());
+            }
+        })
+        .catch(err => console.error("Error cargando modal:", err));
+}
+
+function cargarCSS(ruta) {
+    // Evitar duplicado
+    if (document.querySelector(`link[href="${ruta}"]`)) return;
+
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = ruta;
+    document.head.appendChild(link);
+}
+
+function cargarJS(ruta, callback) {
+    // Verificar si ya existe el script
+    const existente = document.querySelector(`script[src="${ruta}"]`);
+
+    if (existente) {
+        // Si ya está cargado y hay callback → ejecutar
+        if (callback) callback();
+        return;
+    }
+
+    // Crear el script
+    const script = document.createElement("script");
+    script.src = ruta;
+    script.type = "text/javascript";
+
+    // Cuando termine de cargar
+    script.onload = () => {
+        if (callback) callback();
+    };
+
+    // Insertarlo al final del body
+    document.body.appendChild(script);
+}
+
+
+
+
+
 
 
 
@@ -222,10 +306,12 @@ function ocultarProducto(id) {
 if (document.readyState !== "loading") {
     iniciarFiltros();
     iniciarBuscador();
+    iniciarBotonesModales();
 } else {
     document.addEventListener("DOMContentLoaded", () => {
         iniciarFiltros();
         iniciarBuscador();
+        iniciarBotonesModales();
     });
 }
 

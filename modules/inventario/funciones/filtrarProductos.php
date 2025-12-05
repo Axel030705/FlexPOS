@@ -60,7 +60,7 @@ try {
     foreach ($productos as &$producto) {
         $producto['imagen'] = !empty($producto['imagen']) ? $producto['imagen'] : "/uploads/imagenes/productos/default.svg";
 
-        $producto['proveedor'] = !empty($producto['proveedor']) ? $producto['proveedor'] : "—";
+        $producto['proveedor'] = !empty($producto['proveedor']) ? $producto['proveedor'] : "No se asignó un proveedor";
 
         $producto['costo'] = number_format((float)$producto['costo'], 2, '.', '');
         $producto['precio'] = number_format((float)$producto['precio'], 2, '.', '');
