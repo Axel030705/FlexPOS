@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const contenido = document.getElementById('contenido-modulo');
     const modulosExtra = document.querySelectorAll('.container_conf a');
     const todosLosLinks = document.querySelectorAll('#menu-modulos a, .container_conf a');
-
     const logo = document.querySelector('.container_logo');
     const sidebar = document.querySelector('.sidebar');
 
@@ -11,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (logo && sidebar) {
         logo.addEventListener('click', () => {
 
-            // 🔹 Volver a buscar elementos actuales del módulo cargado
+            // Volver a buscar elementos actuales del módulo cargado
             const img_menu = document.querySelector("#contenido-modulo .imagen_menu");
             const sidebar_ventas = document.querySelector(".div2");
             const container_products_ventas = document.querySelector(".div1");
@@ -62,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     cargarCSSModulo(nombreModulo);
                     cargarJSModulo(nombreModulo);
 
-                    // 🔹 Reset después de cargar Módulo
+                    // Reset después de cargar Módulo
                     resetUI();
 
                     // Activar botón del módulo cargado
@@ -93,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
 
-    // 🔹 Siempre obtener elementos actuales del módulo
+    // Siempre obtener elementos actuales del módulo
     function resetUI() {
         sidebar.classList.remove('oculto');
         contenido.classList.remove('contenido-expandido');
@@ -126,4 +125,22 @@ document.addEventListener("DOMContentLoaded", () => {
         script.onerror = () => console.warn(`⚠️ No se encontró JS para el módulo "${nombreModulo}".`);
         document.body.appendChild(script);
     }
+
+    // === Cargar módulo por defecto después de registrar todo ===
+    setTimeout(() => {
+
+        // Intentar cargar ventas
+        let moduloPorDefecto = document.querySelector('#menu-modulos a[data-archivo="/modules/ventas/ventas.php"]');
+
+        // Fallback por si el archivo real no coincide
+        if (!moduloPorDefecto) {
+            moduloPorDefecto = document.querySelector('#menu-modulos a[data-archivo*="ventas"]');
+        }
+
+        if (moduloPorDefecto) {
+            moduloPorDefecto.click();
+        }
+
+    }, 100);
+
 });

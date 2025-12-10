@@ -228,23 +228,9 @@
     background: #ececec;
 }
 
-
 .div1::-webkit-scrollbar {
     display: none;
 }
-
-/* .container_productos .producto {
-    width: 250px; //Comentado
-    height: 280px;
-    padding: 8px;
-    border-radius: 10px;
-    background: #fff;
-    cursor: pointer;
-    text-align: center;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    border: 1px solid #e5e7eb;
-    overflow: hidden;
-} */
 
 .container_productos .producto {
     width: 250px;

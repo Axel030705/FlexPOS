@@ -158,14 +158,62 @@ function iniciarBuscador() {
 
 
 function editarProducto(id) {
-    console.log("Editar producto", id);
-    // Aquí abres modal o haces tu lógica
+
+    // 1. Abrir modal vacío
+    cargarCSS("/modules/inventario/modals/modal_editar_producto.css");
+    cargarModal("/modules/inventario/modals/modal_editar_producto.php", () => {
+
+        // 2. Cargar el JS del modal después de que el modal exista
+        cargarJS("/modules/inventario/modals/modal_editar_producto.js", () => {
+
+            // 3. Llamar función dentro del JS para rellenar datos
+            if (typeof cargarDatosEditar === "function") {
+                cargarDatosEditar(id);
+            }
+        });
+    });
 }
 
+
 function eliminarProducto(id) {
-    console.log("Eliminar producto", id);
-    // Swal de confirmación o lógica
+
+    Swal.fire({
+        title: "¿Eliminar producto?",
+        text: "Esta acción no se puede deshacer.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+
+        if (!result.isConfirmed) return;
+
+        fetch('/modules/inventario/funciones/eliminarProducto.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `accion=eliminar&id=${id}`
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                if (data.success) {
+                    // Remover fila de la tabla
+                    const fila = document.querySelector(`tr[data-id="${id}"]`);
+                    if (fila) fila.remove();
+
+                    Swal.fire("Eliminado", "El producto ha sido eliminado correctamente.", "success");
+                } else {
+                    Swal.fire("Error", data.message, "error");
+                }
+
+            })
+            .catch(err => {
+                Swal.fire("Error", "No se pudo conectar con el servidor.", "error");
+            });
+
+    });
 }
+
 
 function ocultarProducto(id) {
     const btn = document.querySelector(`.btn-ocultar[data-id="${id}"]`);
@@ -228,7 +276,6 @@ function iniciarBotonesModales() {
         btnCategoria.addEventListener("click", abrirModalNuevaCategoria);
 }
 
-
 function abrirModalNuevoProducto() {
     cargarCSS("/modules/inventario/modals/modal_nuevo_producto.css");
     cargarModal("/modules/inventario/modals/modal_nuevo_producto.php");
@@ -236,30 +283,31 @@ function abrirModalNuevoProducto() {
 }
 
 function abrirModalNuevaCategoria() {
-    cargarCSS("/modules/inventario/modals/modal_producto.css");
+    cargarCSS("/modules/inventario/modals/modal_nueva_categoria.css");
     cargarModal("/modules/inventario/modals/modal_nueva_categoria.php");
-    cargarJS("/modules/inventario/modals/modal_nuevo_producto.js");
+    cargarJS("/modules/inventario/modals/modal_nueva_categoria.js");
 }
 
 
-function cargarModal(rutaArchivo) {
+function cargarModal(rutaArchivo, callback) {
     fetch(rutaArchivo)
         .then(res => res.text())
         .then(html => {
             const modalContainer = document.createElement("div");
             modalContainer.classList.add("modal-dinamico");
             modalContainer.innerHTML = html;
-
             document.body.appendChild(modalContainer);
 
-            // Cerrar cuando el modal tenga un botón cerrar
             const btnCerrar = modalContainer.querySelector(".cerrar-modal");
             if (btnCerrar) {
                 btnCerrar.addEventListener("click", () => modalContainer.remove());
             }
+
+            if (callback) callback();
         })
         .catch(err => console.error("Error cargando modal:", err));
 }
+
 
 function cargarCSS(ruta) {
     // Evitar duplicado
