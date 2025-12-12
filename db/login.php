@@ -23,10 +23,11 @@ try {
         exit;
     }
 
+    // Obtener usuario + rol
     $stmt = $pdo->prepare("
-        SELECT id, nombre, password, activo, plan, id_negocio 
-        FROM usuarios 
-        WHERE correo = :usuario 
+        SELECT id, nombre, password, activo, plan, id_negocio, id_rol
+        FROM usuarios
+        WHERE correo = :usuario
         LIMIT 1
     ");
     $stmt->bindParam(":usuario", $usuario);
@@ -48,13 +49,53 @@ try {
         exit;
     }
 
-    // Iniciar sesión
+    // Guardamos todos los datos en la sesión
     $_SESSION['usuario_id'] = $userData['id'];
     $_SESSION['usuario'] = $userData['nombre'];
+    $_SESSION['id_rol'] = $userData['id_rol'];
     $_SESSION['plan'] = $userData['plan'];
     $_SESSION['id_negocio'] = $userData['id_negocio'];
 
-    echo json_encode(["status" => "ok"]);
+    // ==========================================
+    // 🔍 VALIDACIÓN DE CAJA ABIERTA SI ES CAJERO
+    // ==========================================
+    if ($userData['id_rol'] == 2) { // Cajero
+        $stmtCaja = $pdo->prepare("
+            SELECT id_apertura
+            FROM aperturas_caja
+            WHERE id_usuario = :id_usuario
+            AND fecha_cierre IS NULL
+            LIMIT 1
+        ");
+        $stmtCaja->execute([':id_usuario' => $userData['id']]);
+
+        if ($stmtCaja->rowCount() > 0) {
+            // Ya tiene caja abierta → Mandarlo al dashboard normal
+            echo json_encode([
+                "status" => "ok",
+                "id_rol" => 2,
+                "tiene_caja" => true
+            ]);
+            exit;
+        } else {
+            // No tiene caja abierta → Mandarlo a abrir_caja.php
+            echo json_encode([
+                "status" => "ok",
+                "id_rol" => 2,
+                "tiene_caja" => false
+            ]);
+            exit;
+        }
+    }
+
+    // ==========================================
+    // 🔍 SI ES ADMIN (id_rol 1)
+    // ==========================================
+    echo json_encode([
+        "status" => "ok",
+        "id_rol" => 1
+    ]);
+    
 
 } catch (PDOException $e) {
     error_log("DB Error: " . $e->getMessage());

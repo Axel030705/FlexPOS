@@ -23,32 +23,42 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         allowEscapeKey: false
     });
 
-    // Petición fetch o AJAX
     fetch('db/login.php', {
         method: 'POST',
         body: new FormData(document.getElementById("loginForm"))
     })
-    .then(res => res.json())
-    .then(data => {
-        if (data.status === 'ok') {
-            Swal.fire({ icon: 'success', title: 'Bienvenido' }).then(() => {
-                window.location.href = "dashboard.php";
-            });
-        } else {
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'ok') {
+
+                if (data.id_rol == 1) {
+                    window.location.href = "dashboard.php";
+                }
+
+                if (data.id_rol == 2) {
+                    if (data.tiene_caja) {
+                        window.location.href = "dashboard.php";
+                    } else {
+                        window.location.href = "abrir_caja.php";
+                    }
+                }
+
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: data.msg
+                });
+            }
+        })
+
+        .catch(() => {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: data.msg || 'Credenciales incorrectas'
+                text: 'Error en la conexión con el servidor'
             });
-        }
-    })
-    .catch(() => {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Error en la conexión con el servidor'
         });
-    });
 });
 
 function togglePassword() {
@@ -56,7 +66,7 @@ function togglePassword() {
     password.type = password.type === "password" ? "text" : "password";
 }
 
-// Observa cambios en el body y elimina swal2-height-auto automáticamente
+// Observa cambios en SweetAlert para evitar salto visual
 const observer = new MutationObserver(() => {
     if (document.body.classList.contains('swal2-height-auto')) {
         document.body.classList.remove('swal2-height-auto');
